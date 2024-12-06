@@ -6,8 +6,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double screenHeight = MediaQuery.of(context).size.height;
-
     return Scaffold(
       body: Stack(
         children: [
@@ -19,6 +17,9 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
+          Container(
+            color: Colors.black.withOpacity(0.6),
+          ),
           SafeArea(
             child: Container(
               width: double.infinity,
@@ -27,9 +28,9 @@ class HomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Column(
+                  const Column(
                     children: [
-                      const Text(
+                      Text(
                         'Chill quy quiz',
                         style: TextStyle(
                           fontSize: 50,
@@ -43,7 +44,7 @@ class HomeScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 16,
                           fontFamily: 'parkinsans',
-                          color: screenHeight > 480 ? Colors.white : Colors.black,
+                          color: Colors.white,
                         ),
                       ),
                     ],
