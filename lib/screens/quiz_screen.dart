@@ -11,13 +11,20 @@ class QuizScreen extends StatefulWidget {
 }
 
 class _QuizScreenState extends State<QuizScreen> {
+  late List<Quiz> shuffledQuestions;
   int currentQuestionIndex = 0;
   int totalScore = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    shuffledQuestions = List.from(questions)..shuffle();
+  }
 
   void nextQuestion(int score) {
     totalScore += score;
 
-    if (currentQuestionIndex < questions.length - 1) {
+    if (currentQuestionIndex < shuffledQuestions.length - 1) {
       setState(() {
         currentQuestionIndex++;
       });
@@ -31,12 +38,31 @@ class _QuizScreenState extends State<QuizScreen> {
     }
   }
 
+  void previousQuestion() {
+    if (currentQuestionIndex > 0) {
+      setState(() {
+        currentQuestionIndex--;
+      });
+    } else {
+      Navigator.pop(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Quiz Screen')),
+      appBar: AppBar(
+        title: const Text(
+          'Quiz',
+          style: TextStyle(fontFamily: 'parkinsans', fontSize: 18),
+        ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: previousQuestion,
+        ),
+      ),
       body: QuestionCard(
-        questionData: questions[currentQuestionIndex],
+        questionData: shuffledQuestions[currentQuestionIndex],
         onAnswerSelected: nextQuestion,
       ),
     );
