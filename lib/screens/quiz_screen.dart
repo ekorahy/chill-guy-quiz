@@ -61,9 +61,14 @@ class _QuizScreenState extends State<QuizScreen> {
           onPressed: previousQuestion,
         ),
       ),
-      body: QuestionCard(
-        questionData: shuffledQuestions[currentQuestionIndex],
-        onAnswerSelected: nextQuestion,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: QuestionCard(
+            questionData: shuffledQuestions[currentQuestionIndex],
+            onAnswerSelected: nextQuestion,
+          ),
+        ),
       ),
     );
   }

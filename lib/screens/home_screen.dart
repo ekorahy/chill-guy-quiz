@@ -6,6 +6,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -25,20 +27,24 @@ class HomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Column(
+                  Column(
                     children: [
-                      Text(
+                      const Text(
                         'Chill quy quiz',
                         style: TextStyle(
-                            fontSize: 50,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'caveat',
-                            color: Color(0xFF9A3412)),
+                          fontSize: 50,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'caveat',
+                          color: Color(0xFF9A3412),
+                        ),
                       ),
                       Text(
                         'Seberapa chill guy-nya kamu?',
-                        style:
-                            TextStyle(fontSize: 16, fontFamily: 'parkinsans'),
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: 'parkinsans',
+                          color: screenHeight > 480 ? Colors.white : Colors.black,
+                        ),
                       ),
                     ],
                   ),
